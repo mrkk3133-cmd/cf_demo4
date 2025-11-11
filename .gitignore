@@ -1,2 +1,18 @@
-# Ignore service account keys
-./keys/
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Environment files
+.env
+
+# Local test folders
+testCF/
+AB/test_request_results/
+
+# Service account keys (IMPORTANT)
+keys/
+*.json
+
+# VS Code workspace files
+.vscode/
