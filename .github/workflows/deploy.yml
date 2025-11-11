@@ -1,0 +1,32 @@
+name: Deploy Cloud Function to GCP
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment only when merged to main
+
+jobs:
+  deploy:
+    name: Deploy to Google Cloud Functions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup gcloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Deploy Cloud Function
+        working-directory: ./cloud_function_trainer
+        run: |
+          gcloud functions deploy cf_demo4_function \
+            --region=us-central1 \
+            --runtime=python311 \
+            --trigger-http \
+            --entry-point=hello_http \
+            --allow-unauthenticated
