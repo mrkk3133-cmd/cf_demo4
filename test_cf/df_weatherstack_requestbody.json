@@ -1,0 +1,10 @@
+{
+  "fulfillmentInfo": {
+    "tag": "getweather"
+  },
+  "sessionInfo": {
+    "parameters": {
+      "p_location": "Atlanta"
+    }
+  }
+}
